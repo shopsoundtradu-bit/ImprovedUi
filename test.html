@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Project</title>
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: #000;
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .sheet {
+            width: 100%;
+            max-width: 400px;
+            padding: 0 20px 200px;
+        }
+
+        /* TOP BAR */
+        .topbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 24px 24px;
+        }
+
+        .icon-btn {
+            width: 32px; height: 32px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.08);
+            border: none;
+            color: rgba(255,255,255,0.5);
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer;
+            transition: background 0.15s, color 0.15s;
+        }
+
+        .icon-btn:hover { background: rgba(255,255,255,0.14); color: #fff; }
+        .icon-btn svg { width: 12px; height: 12px; stroke-width: 2.2; }
+
+        .topbar-title {
+            font-family: 'Syne', sans-serif;
+            font-size: 18px;
+            font-weight: 700;
+            color: rgba(255,255,255,0.7);
+            letter-spacing: 0.02em;
+        }
+
+        /* SCREENS */
+        .screen { display: none; animation: up 0.24s cubic-bezier(0.22,1,0.36,1) both; }
+        .screen.active { display: block; }
+        
+        @keyframes up {
+            from { opacity: 0; transform: translateY(10px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        /* PRESET GRID */
+        .preset-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px 10px; /* Added horizontal gap for better spacing */
+        }
+
+        .preset-cell {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            -webkit-tap-highlight-color: transparent;
+            transition: opacity 0.14s;
+        }
+
+        .preset-cell:active { opacity: 0.45; }
+
+        .logo-circle {
+            width: 64px; height: 64px;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .preset-cell-name {
+            font-size: 14px;
+            font-weight: bold;
+            color: rgba(255,255,255,0.85);
+            text-align: center;
+            letter-spacing: -0.01em;
+            line-height: 1.2;
+        }
+
+        .pill {
+            display: none;
+            font-size: 9.5px;
+            font-weight: 500;
+            letter-spacing: 0.07em;
+            text-transform: uppercase;
+            padding: 3px 9px;
+            border-radius: 100px;
+            background: rgba(255,255,255,0.08);
+            color: rgba(255,255,255,0.35);
+        }
+
+        /* CONFIG */
+        .hint {
+            font-size: 12px;
+            color: rgba(255,255,255,0.25);
+            font-weight: 300;
+            margin-bottom: 28px;
+        }
+        .hint b { color: rgba(255,255,255,0.4); font-weight: 500; }
+
+        .field-group { margin-bottom: 26px; }
+        .field-label {
+            display: block;
+            font-size: 9px;
+            font-weight: 500;
+            letter-spacing: 0.13em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.25);
+            margin-bottom: 9px;
+        }
+
+        .field-input {
+            width: 100%;
+            background: none;
+            border: none;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+            padding: 8px 0;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 16px;
+            color: #fff;
+            outline: none;
+            transition: border-color 0.16s;
+        }
+
+        .field-input::placeholder { color: rgba(255,255,255,0.18); font-weight: 300; }
+        .field-input:focus { border-bottom-color: rgba(255,255,255,0.3); }
+        input[type=number]::-webkit-inner-spin-button { -webkit-appearance: none; }
+
+        .type-row { display: flex; gap: 7px; }
+        .type-pill {
+            flex: 1; padding: 9px;
+            border-radius: 100px;
+            border: 1px solid rgba(255,255,255,0.08);
+            background: none;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 13px; font-weight: 400;
+            color: rgba(255,255,255,0.28);
+            cursor: pointer; text-align: center;
+            transition: all 0.15s;
+        }
+        .type-pill.active { background: #fff; border-color: #fff; color: #000; font-weight: 500; }
+
+        .dims-row {
+            display: grid;
+            grid-template-columns: 1fr 14px 1fr 60px;
+            gap: 0 10px;
+            align-items: end;
+        }
+        .dims-x { color: rgba(255,255,255,0.18); font-size: 14px; padding-bottom: 9px; text-align: center; }
+
+        select.field-input {
+            appearance: none; cursor: pointer;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='[http://www.w3.org/2000/svg](http://www.w3.org/2000/svg)' width='9' height='9' viewBox='0 0 24 24' fill='none' stroke='rgba(255,255,255,0.2)' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 2px center;
+        }
+
+        .create-btn {
+            width: 100%;
+            background: #fff; color: #000;
+            border: none; border-radius: 100px;
+            padding: 14px;
+            font-family: 'Syne', sans-serif;
+            font-size: 13px; font-weight: 700;
+            letter-spacing: 0.07em; text-transform: uppercase;
+            cursor: pointer; margin-top: 8px;
+            transition: opacity 0.15s;
+        }
+        .create-btn:hover { opacity: 0.82; }
+
+        /* SUCCESS */
+        .success-wrap { text-align: center; padding: 20px 0 8px; }
+        .success-check {
+            width: 50px; height: 50px; border-radius: 50%;
+            background: rgba(255,255,255,0.05);
+            display: flex; align-items: center; justify-content: center;
+            margin: 0 auto 20px;
+        }
+        .success-name {
+            font-family: 'Syne', sans-serif;
+            font-size: 20px; font-weight: 800; margin-bottom: 5px;
+        }
+        .success-meta { font-size: 13px; color: rgba(255,255,255,0.25); font-weight: 300; }
+        .success-again {
+            display: inline-block; margin-top: 26px;
+            font-size: 12px; color: rgba(255,255,255,0.25);
+            background: none; border: none; cursor: pointer;
+            font-family: 'DM Sans', sans-serif;
+        }
+    </style>
+</head>
+<body>
+
+<div class="sheet">
+    <div class="topbar">
+        <button class="icon-btn" onclick="handleClose()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+            </svg>
+        </button>
+        <span class="topbar-title" id="topbar-label">Project</span>
+        <button class="icon-btn" id="plus-btn" onclick="handlePlus()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+            </svg>
+        </button>
+    </div>
+
+    <div class="screen active" id="screen-presets">
+        <div class="preset-grid">
+            <div class="preset-cell" onclick="pick('WEBTOON','vertical',800,null,'px')">
+                <div class="logo-circle" style="background:#00d564">
+                    <svg width="26" height="17" viewBox="0 0 26 17" fill="none">
+                        <path d="M0 0L4 17L8.5 6L13 17L17.5 6L22 17L26 0H22.2L19.2 10L15.5 0L13 7.5L10.5 0L6.8 10L3.8 0Z" fill="white"/>
+                    </svg>
+                </div>
+                <span class="preset-cell-name">Webtoon</span>
+                
+            </div>
+
+            <div class="preset-cell" onclick="pick('Tapas','vertical',690,null,'px')">
+                <div class="logo-circle" style="background:#f5c518">
+                    <svg width="40" height="16" viewBox="0 0 40 16"><text x="2" y="13" font-family="Georgia,serif" font-style="italic" font-size="14" font-weight="bold" fill="#111">Tapas</text></svg>
+                </div>
+                <span class="preset-cell-name">Tapas (V)</span>
+                
+            </div>
+
+            <div class="preset-cell" onclick="pick('Tapas','pages',690,1000,'px')">
+                <div class="logo-circle" style="background:#f5c518">
+                    <svg width="40" height="16" viewBox="0 0 40 16"><text x="2" y="13" font-family="Georgia,serif" font-style="italic" font-size="14" font-weight="bold" fill="#111">tapas</text></svg>
+                </div>
+                <span class="preset-cell-name">Tapas (P)</span>
+                
+            </div>
+
+            <div class="preset-cell" onclick="pick('Lezhin','vertical',690,null,'px')">
+                <div class="logo-circle" style="background:#e83e5a">
+                    <svg width="26" height="22" viewBox="0 0 26 22" fill="none">
+                        <rect x="3" y="0" width="5" height="5" fill="white"/><rect x="18" y="0" width="5" height="5" fill="white"/><rect x="0" y="5" width="26" height="14" rx="2" fill="white"/>
+                    </svg>
+                </div>
+                <span class="preset-cell-name">Lezhin</span>
+                
+            </div>
+
+            <div class="preset-cell" onclick="pick('Toomics','vertical',720,null,'px')">
+                <div class="logo-circle" style="background:#e53935">
+                    <svg width="26" height="26" viewBox="0 0 26 26" fill="none">
+                        <circle cx="13" cy="13" r="10" stroke="white" stroke-width="2" fill="none"/><path d="M10 8.5L19 13L10 17.5Z" fill="white"/>
+                    </svg>
+                </div>
+                <span class="preset-cell-name">Toomics</span>
+                
+            </div>
+
+            <div class="preset-cell" onclick="pick('GlobalComix','vertical',800,null,'px')">
+                <div class="logo-circle" style="background:#111827">
+                    <svg width="26" height="26" viewBox="0 0 26 26" fill="none">
+                        <circle cx="13" cy="13" r="9.5" stroke="#ff6b35" stroke-width="1.5" fill="none"/>
+                    </svg>
+                </div>
+                <span class="preset-cell-name">GlobalComix (V)</span>
+                
+            </div>
+            
+            <div class="preset-cell" onclick="pick('WEBTOON','vertical',800,null,'px')">
+                <div class="logo-circle" style="background:#00d564">
+                    <svg width="26" height="17" viewBox="0 0 26 17" fill="none">
+                        <path d="M0 0L4 17L8.5 6L13 17L17.5 6L22 17L26 0H22.2L19.2 10L15.5 0L13 7.5L10.5 0L6.8 10L3.8 0Z" fill="white"/>
+                    </svg>
+                </div>
+                <span class="preset-cell-name">Webtoon</span>
+                
+            </div>
+
+            <div class="preset-cell" onclick="pick('Tapas','vertical',690,null,'px')">
+                <div class="logo-circle" style="background:#f5c518">
+                    <svg width="40" height="16" viewBox="0 0 40 16"><text x="2" y="13" font-family="Georgia,serif" font-style="italic" font-size="14" font-weight="bold" fill="#111">Tapas</text></svg>
+                </div>
+                <span class="preset-cell-name">Tapas (V)</span>
+                
+            </div>
+
+            <div class="preset-cell" onclick="pick('Tapas','pages',690,1000,'px')">
+                <div class="logo-circle" style="background:#f5c518">
+                    <svg width="40" height="16" viewBox="0 0 40 16"><text x="2" y="13" font-family="Georgia,serif" font-style="italic" font-size="14" font-weight="bold" fill="#111">tapas</text></svg>
+                </div>
+                <span class="preset-cell-name">Tapas (P)</span>
+                
+            </div>
+
+            <div class="preset-cell" onclick="pick('Lezhin','vertical',690,null,'px')">
+                <div class="logo-circle" style="background:#e83e5a">
+                    <svg width="26" height="22" viewBox="0 0 26 22" fill="none">
+                        <rect x="3" y="0" width="5" height="5" fill="white"/><rect x="18" y="0" width="5" height="5" fill="white"/><rect x="0" y="5" width="26" height="14" rx="2" fill="white"/>
+                    </svg>
+                </div>
+                <span class="preset-cell-name">Lezhin</span>
+                
+            </div>
+
+            <div class="preset-cell" onclick="pick('Toomics','vertical',720,null,'px')">
+                <div class="logo-circle" style="background:#e53935">
+                    <svg width="26" height="26" viewBox="0 0 26 26" fill="none">
+                        <circle cx="13" cy="13" r="10" stroke="white" stroke-width="2" fill="none"/><path d="M10 8.5L19 13L10 17.5Z" fill="white"/>
+                    </svg>
+                </div>
+                <span class="preset-cell-name">Toomics</span>
+                
+            </div>
+
+            <div class="preset-cell" onclick="pick('GlobalComix','vertical',800,null,'px')">
+                <div class="logo-circle" style="background:#111827">
+                    <svg width="26" height="26" viewBox="0 0 26 26" fill="none">
+                        <circle cx="13" cy="13" r="9.5" stroke="#ff6b35" stroke-width="1.5" fill="none"/>
+                    </svg>
+                </div>
+                <span class="preset-cell-name">GlobalComix (V)</span>
+                
+            </div>
+            
+        </div>
+    </div>
+
+    <div class="screen" id="screen-config">
+        <p class="hint" id="hint-text" style="display:none"><b id="hint-name"></b> preset</p>
+        
+        <div class="field-group">
+            <label class="field-label">Name</label>
+            <input class="field-input" id="proj-name" type="text" placeholder="Untitled…" autocomplete="off"/>
+        </div>
+
+        <div class="field-group">
+            <label class="field-label">Format</label>
+            <div class="type-row">
+                <button class="type-pill active" id="btn-pages" onclick="setType('pages')">Pages</button>
+                <button class="type-pill" id="btn-vertical" onclick="setType('vertical')">Vertical Scroll</button>
+            </div>
+        </div>
+
+        <div class="field-group">
+            <label class="field-label">Size</label>
+            <div class="dims-row">
+                <div>
+                    <span class="field-label" style="opacity:.5">Width</span>
+                    <input class="field-input" id="proj-w" type="number" placeholder="800" min="1"/>
+                </div>
+                <div class="dims-x">×</div>
+                <div id="height-wrap">
+                    <span class="field-label" style="opacity:.5">Height</span>
+                    <input class="field-input" id="proj-h" type="number" placeholder="—" min="1"/>
+                </div>
+                <div>
+                    <span class="field-label" style="opacity:.5">Unit</span>
+                    <select class="field-input" id="proj-unit">
+                        <option>px</option><option>in</option><option>cm</option><option>mm</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <button class="create-btn" onclick="doCreate()">Create Project</button>
+    </div>
+
+    <div class="screen" id="screen-success">
+        <div class="success-wrap">
+            <div class="success-check">
+                <svg viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.45)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12"/>
+                </svg>
+            </div>
+            <div class="success-name" id="s-name">Project</div>
+            <div class="success-meta" id="s-meta"></div>
+            <button class="success-again" onclick="reset()">← New project</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    let currentType = 'pages';
+
+    function show(id) {
+        document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+        document.getElementById(id).classList.add('active');
+    }
+
+    function setTopbar(label, plusVisible) {
+        document.getElementById('topbar-label').textContent = label;
+        document.getElementById('plus-btn').style.visibility = plusVisible ? 'visible' : 'hidden';
+    }
+
+    function handleClose() {
+        if (document.querySelector('.screen.active').id !== 'screen-presets') {
+            setTopbar('Project', true); show('screen-presets');
+        }
+    }
+
+    function handlePlus() {
+        document.getElementById('hint-text').style.display = 'none';
+        clearForm(); setTopbar('Custom', false); show('screen-config');
+    }
+
+    function pick(name, type, w, h, unit) {
+        document.getElementById('proj-w').value = w || '';
+        document.getElementById('proj-h').value = h || '';
+        document.getElementById('proj-unit').value = unit;
+        document.getElementById('proj-name').value = '';
+        setType(type);
+        document.getElementById('hint-name').textContent = name + ' · ' + (type === 'vertical' ? 'Vertical' : 'Pages');
+        document.getElementById('hint-text').style.display = 'block';
+        setTopbar(name, false); show('screen-config');
+    }
+
+    function setType(type) {
+        currentType = type;
+        document.getElementById('btn-pages').classList.toggle('active', type === 'pages');
+        document.getElementById('btn-vertical').classList.toggle('active', type === 'vertical');
+        const hw = document.getElementById('height-wrap');
+        const hi = document.getElementById('proj-h');
+        hw.style.opacity = type === 'vertical' ? '0.28' : '1';
+        hi.disabled = type === 'vertical';
+        hi.placeholder = type === 'vertical' ? '∞' : '—';
+    }
+
+    function clearForm() {
+        document.getElementById('proj-name').value = '';
+        document.getElementById('proj-w').value = '';
+        document.getElementById('proj-h').value = '';
+        document.getElementById('proj-unit').value = 'px';
+        setType('pages');
+    }
+
+    function doCreate() {
+        const name = document.getElementById('proj-name').value.trim();
+        if (!name) {
+            const el = document.getElementById('proj-name');
+            el.style.borderBottomColor = 'rgba(255,60,60,0.5)';
+            el.focus();
+            setTimeout(() => el.style.borderBottomColor = '', 1400);
+            return;
+        }
+        const w = document.getElementById('proj-w').value || '?';
+        const h = document.getElementById('proj-h').value || '?';
+        const unit = document.getElementById('proj-unit').value;
+        const dim = currentType === 'vertical' ? `${w}${unit} · Vertical Scroll` : `${w} × ${h}${unit} · Pages`;
+        document.getElementById('s-name').textContent = name;
+        document.getElementById('s-meta').textContent = dim;
+        setTopbar('Done', false); show('screen-success');
+    }
+
+    function reset() { 
+        clearForm(); 
+        setTopbar('Project', true); 
+        show('screen-presets'); 
+    }
+</script>
+
+</body>
+</html>

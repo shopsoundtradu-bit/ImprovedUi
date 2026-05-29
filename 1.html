@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Password</title>
+<style>
+  /* Base styles inherited */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #000; color: #fff; font-family: -apple-system, sans-serif; display: flex; justify-content: center; min-height: 100vh; padding: 20px; }
+  
+  .container { width: 100%; max-width: 360px; padding-top: 60px; animation: slideIn 0.4s ease-out; }
+  @keyframes slideIn { from { opacity: 0; transform: translateX(10px); } to { opacity: 1; transform: translateX(0); } }
+
+  .back-btn { color: rgba(255,255,255,0.4); text-decoration: none; font-size: 14px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 32px; transition: 0.2s; }
+
+  h1 { font-size: 32px; font-weight: 700; margin-bottom: 8px; letter-spacing: -1px; }
+  p { color: rgba(255,255,255,0.6); margin-bottom: 40px; font-size: 17px; }
+
+  .input-field {
+    width: 100%;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 14px;
+    padding: 18px;
+    color: white;
+    font-size: 16px;
+    outline: none;
+    margin-bottom: 16px;
+    text-align: left;
+  }
+
+  .btn-submit {
+    width: 100%;
+    background: #111;
+    color: rgba(255,255,255,0.3);
+    border: none;
+    padding: 18px;
+    border-radius: 14px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: not-allowed;
+    transition: all 0.3s ease;
+  }
+
+  .btn-submit.active { background: #fff; color: #000; cursor: pointer; }
+</style>
+</head>
+<body>
+  <div class="container">
+    <a href="previous page" class="back-btn"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>Back</a>
+    <h1>Enter password</h1>
+    <p>Please enter your password to continue.</p>
+    
+    <input type="password" id="passInput" class="input-field" placeholder="••••••••" autofocus>
+    <button id="submitBtn" class="btn-submit">Sign In</button>
+  </div>
+
+  <script>
+    const passInput = document.getElementById('passInput');
+    const submitBtn = document.getElementById('submitBtn');
+
+    passInput.addEventListener('input', () => {
+      if (passInput.value.length >= 1) {
+        submitBtn.classList.add('active');
+      } else {
+        submitBtn.classList.remove('active');
+      }
+    });
+  </script>
+</body>
+</html>
