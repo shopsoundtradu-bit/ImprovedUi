@@ -58,21 +58,23 @@
     filter: none !important;
   }
   
-/* ── UPDATED BODY RULE ── */
+/* ── REMOVED FIXED POSITION FROM BODY ── */
 body {
   font-family: 'DM Sans', sans-serif;
-  /* Changed from #FFFFFF to match your canvas area/bottom bar color */
-  background: #EEF1F5; 
+  background: #EEF1F5;
+  
+  /* Standardizing height to fallback correctly on iOS PWA */
+  height: 100vh;
   height: 100dvh;
+  
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  position: fixed;
-  width: 100%;
   margin: 0;
   padding: 0;
+  
+  /* Removed position: fixed and width: 100% which causes the mid-screen float */
 }
-
 
   
 /* ── TOP BAR ── */
@@ -135,17 +137,18 @@ body {
     cursor: pointer;
   }
 
-  /* ── CANVAS AREA ── */
-  .canvas-area {
-    flex: 1;
-    position: relative;
-    background: #EEF1F5;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    touch-action: none; 
-  }
+/* ── UPDATED CANVAS TO PUSH TOOLBAR DOWN ── */
+.canvas-area {
+  flex: 1;
+  /* This forces the canvas to take up EVERY bit of available space, pushing the bar down */
+  position: relative;
+  background: #EEF1F5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  touch-action: none;
+}
 
   .canvas-card {
     width: min(85vw, 360px);
@@ -179,20 +182,19 @@ body {
     opacity: 1;
   }
 
-/* ── UPDATED BOTTOM BAR ── */
+/* ── PINNED BOTTOM BAR ── */
 .bottom-bar {
-  /* Use border-box to ensure safe-area padding fits inside the layout safely */
   box-sizing: border-box;
-  
-  /* Combine your base bar height with the iOS bottom safe area padding */
   height: calc(var(--bar-height) + env(safe-area-inset-bottom));
   padding-bottom: env(safe-area-inset-bottom);
-  
   background: #EEF1F5;
   display: flex;
   align-items: center;
   z-index: 20;
-  position: relative;
+  
+  /* Flex-shrink ensures the toolbar never collapses or gets squished */
+  flex-shrink: 0;
+  width: 100%;
 }
 
   .bottom-scroll {
