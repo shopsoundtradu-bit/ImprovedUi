@@ -1,0 +1,121 @@
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --radius: 14px;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text-primary);
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.container {
+  width: 100%;
+  max-width: 360px;
+  display: flex;
+  flex-direction: column;
+  padding-top: 60px;
+}
+
+/* Header Section */
+.header-section {
+  text-align: center;
+  margin-bottom: 40px;
+}
+.logo-wrap {
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: center;
+}
+/* Your custom brand logo size */
+.logo-wrap svg,
+.logo-wrap img { width: 150px; height: 150px; }
+
+.header-section h1 { font-size: 32px; font-weight: 700; letter-spacing: -1px; margin-bottom: 4px; }
+.header-section p { font-size: 17px; color: var(--text-secondary); }
+
+/* Social Buttons */
+.social-group { display: flex; flex-direction: column; gap: 12px; margin-bottom: 32px; }
+
+.btn-social {
+  background: var(--text-primary);
+  border: none;
+  color: var(--bg);
+  padding: 14px;
+  border-radius: var(--radius);
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  transition: transform 0.1s ease, opacity 0.2s ease;
+}
+
+.btn-social:hover {
+  opacity: 0.9;
+}
+
+.btn-social:active {
+  transform: scale(0.98);
+}
+
+/* Social Icon Styling */
+.btn-social svg,
+.btn-social img {
+  width: 20px;
+  height: 20px;
+}
+
+.divider {
+  margin: 24px 0;
+  display: flex;
+  align-items: center;
+  color: var(--text-disabled);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.divider::before, .divider::after { content: ""; flex: 1; height: 1px; background: var(--border); margin: 0 15px; }
+
+/* Input & Primary Button */
+.input-field {
+  width: 100%;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 18px;
+  color: var(--text-primary);
+  font-size: 16px;
+  outline: none;
+  margin-bottom: 16px;
+  transition: border-color 0.2s;
+}
+
+.input-field:focus {
+  border-color: var(--text-disabled);
+}
+
+.btn-continue {
+  width: 100%;
+  background: var(--surface);
+  color: var(--text-disabled);
+  border: none;
+  padding: 18px;
+  border-radius: var(--radius);
+  font-size: 16px;
+  font-weight: 600;
+  cursor: not-allowed;
+  transition: all 0.3s;
+}
+
+.btn-continue.active {
+  background: var(--text-primary);
+  color: var(--bg);
+  cursor: pointer;
+}

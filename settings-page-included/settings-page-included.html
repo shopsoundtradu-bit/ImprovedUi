@@ -1,0 +1,149 @@
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Settings — Monochrome Tech</title>
+<link rel="stylesheet" href="../../assets/theme.css">
+<link rel="stylesheet" href="style.css">
+<script src="../../assets/theme.js"></script>
+</head>
+<body>
+
+<div class="page">
+  <div class="nav-bar">
+    <button class="back-btn" type="button" onclick="history.back()">
+      <img src="../../assets/icons/back-arrow.svg" alt="" width="18" height="18">
+      Back
+    </button>
+  </div>
+
+  <div class="profile-header">
+    <div class="profile-avatar"></div>
+    <div class="profile-name">Estrella Silva</div>
+    <div class="profile-email">estrsilva333@email.com</div>
+  </div>
+
+  <div class="settings-group">
+    <div class="group-label">Account</div>
+    <div class="group-container">
+      <div class="row">
+        <img src="../../assets/icons/misc-icon-f8bf17bbde.svg" alt="" width="24" height="24">
+        <div class="row-label">Account Information</div>
+      </div>
+      
+      <div class="row"><img src="../../assets/icons/misc-icon-8dd0330e20.svg" alt="" width="24" height="24"><div class="row-label">Profile</div></div>
+      <div class="row"><img src="../../assets/icons/misc-icon-7fe25a3645.svg" alt="" width="24" height="24"><div class="row-label">Inbox</div></div>
+      
+      <div class="row">
+        <img src="../../assets/icons/misc-icon-33ff5c79f0.svg" alt="" width="24" height="24">
+        <div class="row-label">Sign Out</div></div>
+    </div>
+  </div>
+
+  <div class="settings-group">
+    <div class="group-label">Billing</div>
+    <div class="group-container">
+      <div class="row"><img src="../../assets/icons/misc-icon-dda9210de2.svg" alt="" width="24" height="24"><div class="row-label">Plan</div><div class="row-value">Free</div></div>
+      <div class="row"><img src="../../assets/icons/misc-icon-32a3c549f8.svg" alt="" width="24" height="24"><div class="row-label">Credits</div><div class="row-value">0</div></div>
+      <div class="row"><img src="../../assets/icons/misc-icon-49ca378eed.svg" alt="" width="24" height="24"><div class="row-label">Manage Payments</div></div>
+    </div>
+  </div>
+
+  <div class="settings-group">
+    <div class="group-label">Assistant</div>
+    <div class="group-container">
+      <div class="row"><img src="../../assets/icons/misc-icon-4490877272.svg" alt="" width="24" height="24"><div class="row-label">Assistant Model</div><div class="row-value">Ultra</div></div>
+      <div class="row"><img src="../../assets/icons/misc-icon-5353c25107.svg" alt="" width="24" height="24"><div class="row-label">System Instructions</div></div>
+      <div class="row"><img src="../../assets/icons/misc-icon-9b42a4eae1.svg" alt="" width="24" height="24"><div class="row-label">Temperature</div><div class="row-value">0.7</div></div>
+      <div class="row"><img src="../../assets/icons/misc-icon-8566d4c7f3.svg" alt="" width="24" height="24"><div class="row-label">Personalization</div></div>
+      <div class="row"><img src="../../assets/icons/misc-icon-0ff99747e7.svg" alt="" width="24" height="24"><div class="row-label">Manage Conversations</div></div>
+    </div>
+  </div>
+
+  <div class="settings-group">
+    <div class="group-label">Image Generator</div>
+    <div class="group-container">
+      <div class="row"><img src="../../assets/icons/misc-icon-6818d3b03e.svg" alt="" width="24" height="24"><div class="row-label">Image Generation Model</div></div>
+      <div class="row"><img src="../../assets/icons/misc-icon-33c627aa55.svg" alt="" width="24" height="24"><div class="row-label">Image Editing Model</div></div>
+      <div class="row">
+        <img src="../../assets/icons/misc-icon-edb44834b2.svg" alt="" width="24" height="24">
+        <div class="row-label">Default Global Seed Lock</div>
+        <div class="toggle on" id="seedLockToggle" onclick="toggleSeedLock()"></div>
+      </div>
+      <div class="row disabled" id="seedRow">
+        <img src="../../assets/icons/misc-icon-96438bbb49.svg" alt="" width="24" height="24">
+        <div class="row-label">Default Global Seed</div>
+        <div class="row-value">482009</div>
+      </div>
+      <div class="row">
+        <img src="../../assets/icons/misc-icon-362b08c4ea.svg" alt="" width="24" height="24">
+        <div class="row-label">Manage Lab</div></div>
+      <div class="row">
+        <img src="../../assets/icons/misc-icon-ff0550d1d0.svg" alt="" width="24" height="24">
+        <div class="row-label">Manage Uploads</div></div>
+      <div class="row">
+        <img src="../../assets/icons/misc-icon-b7ec2f88e9.svg" alt="" width="24" height="24">
+        <div class="row-label">Manage Baskets</div></div>
+    </div>
+  </div>
+
+  <div class="settings-group">
+    <div class="group-label">Editor</div>
+    <div class="group-container">
+        <div class="row">
+        <img src="../../assets/icons/misc-icon-8de2430e38.svg" alt="" width="24" height="24">
+        <div class="row-label">Light Mode Always On</div>
+        <div class="toggle on" onclick="this.classList.toggle('on')"></div>
+      </div>
+      <div class="row"><img src="../../assets/icons/misc-icon-8cc22ab075.svg" alt="" width="24" height="24"><div class="row-label">Manage Designs</div></div>
+
+    </div>
+  </div>
+
+  <div class="settings-group">
+    <div class="group-label">App</div>
+    <div class="group-container">
+      <div class="row">
+<img src="../../assets/icons/misc-icon-28685b7596.svg" alt="" width="24" height="24"><div class="row-label">App Language</div><div class="row-value">English</div></div>
+      <div class="row" id="appearanceRow"><img src="../../assets/icons/misc-icon-f3cf7aa550.svg" alt="" width="24" height="24"><div class="row-label">Appearance</div><div class="row-value" id="appearanceValue">Dark</div></div>
+      
+<div class="row">
+        <img src="../../assets/icons/misc-icon-3cf6397275.svg" alt="" width="24" height="24">
+        <div class="row-label">Notifications</div>
+        <div class="toggle on" onclick="this.classList.toggle('on')"></div>
+      </div>
+      
+      <div class="row"><img src="../../assets/icons/misc-icon-2cf25a0f79.svg" alt="" width="24" height="24"><div class="row-label">Haptic Feedback</div><div class="toggle on" onclick="this.classList.toggle('on')"></div></div>
+    </div>
+  </div>
+
+  <div class="settings-group">
+    <div class="group-label">Speech & Voice</div>
+    <div class="group-container">
+      <div class="row"><img src="../../assets/icons/misc-icon-05e3eaa138.svg" alt="" width="24" height="24"><div class="row-label">Voice</div><div class="row-value">John</div></div>
+      <div class="row"><img src="../../assets/icons/misc-icon-45b110f4b6.svg" alt="" width="24" height="24"><div class="row-label">Speech Language</div><div class="row-value">English (US)</div></div>
+    </div>
+  </div>
+
+  <div class="settings-group">
+    <div class="group-label">About</div>
+    <div class="group-container">
+      <div class="row">
+<img src="../../assets/icons/misc-icon-3273339934.svg" alt="" width="24" height="24"><div class="row-label">Help Center</div></div>
+      <div class="row"><img src="../../assets/icons/misc-icon-43e8bb788e.svg" alt="" width="24" height="24"><div class="row-label">Terms of Use</div></div>
+      <div class="row"><img src="../../assets/icons/misc-icon-777b5e6614.svg" alt="" width="24" height="24"><div class="row-label">Privacy Policy</div></div>
+          <div class="row">
+<img src="../../assets/icons/misc-icon-e1758a6762.svg" alt="" width="24" height="24"><div class="row-label">Report Bugs & Request Features</div></div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <p class="version-text"> Cellore 0.0.1 Beta </p>
+  </div>
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>

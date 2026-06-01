@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Studio — Precision Refinement</title>
+<link rel="stylesheet" href="../../assets/theme.css">
+<link rel="stylesheet" href="style.css">
+
+</style>
+<script src="../../assets/theme.js"></script>
+</head>
+<body>
+
+<div class="chat-view">
+  <header class="header" id="mainHeader">
+  <div class="header-left" onclick="toggleSidebar()">
+    <img src="../../assets/icons/chat-icon-cf014b6425.svg" alt="" width="24" height="24">
+  </div>
+  <div class="header-center-area">
+    <div class="model-switcher">
+      <span class="model-name">Sonnet 4.6</span>
+      <div class="chevron-down"></div>
+    </div>
+  </div>
+  <div class="header-right">
+    <img src="../../assets/icons/chat-icon-7deb745770.svg" alt="" width="24" height="24">
+  </div>
+</header>
+
+  <main class="chat-content">
+    <div class="msg-user">Analyze the design spacing.</div>
+    <div class="msg-ai">
+      The layout is now updated. I have restored all your sidebar sections and linked the send button state to the textarea input.
+      <div class="ai-actions">
+        <img src="../../assets/icons/chat-icon-3da3af0ed8.svg" alt="" width="18" height="18">
+        <img src="../../assets/icons/chat-icon-799731cb08.svg" alt="" width="18" height="18">
+        <img src="../../assets/icons/chat-icon-b776a4747f.svg" alt="" width="18" height="18">
+      </div>
+    </div>
+  </main>
+
+  <footer class="input-wrapper">
+    <div class="input-box" id="inputBox">
+      <div class="textarea-wrapper" id="textareaWrapper">
+        <textarea id="chatInput" rows="1" placeholder="Message Writing + Consistent..."></textarea>
+        <div class="textarea-btn-col" id="textareaBtnCol">
+          <button class="textarea-action-btn" id="expandBtn" onclick="expandTextarea()">
+            <img src="../../assets/icons/chat-icon-ef8b1c1133.svg" alt="" width="18" height="18">
+          </button>
+          <button class="textarea-action-btn" id="shrinkBtn" onclick="shrinkTextarea()">
+            <img src="../../assets/icons/chat-icon-d66b1559a2.svg" alt="" width="18" height="18">
+          </button>
+        </div>
+      </div>
+      <div class="input-toolbar">
+        <div class="tool-group">
+          <img src="../../assets/icons/chat-icon-ba78844e59.svg" alt="" width="24" height="24">
+          <img src="../../assets/icons/chat-icon-013e607df5.svg" alt="" width="24" height="24">
+          <img src="../../assets/icons/chat-icon-9664001e97.svg" alt="" width="24" height="24">
+        </div>
+        <div class="tool-group">
+          <img src="../../assets/icons/chat-icon-0165bacd0b.svg" alt="" width="24" height="24">
+          <div class="send-circle">
+            <img src="../../assets/icons/chat-icon-a5a654b6bc.svg" alt="" width="20" height="20">
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+</div>
+
+
+<div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+
+<div class="model-menu" id="modelMenu">
+  <div class="model-option">
+    <div class="model-title">Sonnet 4.6 (Limited)</div>
+    <p class="model-text">10 Messages Daily free</p>
+  </div>
+  <div class="model-option">
+  <div class="model-title">Multi Agent (Pro)</div>
+    <p class="model-text">Smart Sub Agents</p>
+  </div>
+  <div class="model-option">
+    <div class="model-title">Haiku 4.5</div>
+    <p class="model-text">Free And Unlimited</p>
+  </div>
+</div>
+
+<div class="sidebar" id="sidebar">
+  <div class="top-row">
+  <div class="search-pill">
+    <img src="../../assets/icons/chat-icon-a01ed9e8dc.svg" alt="" width="22" height="22 ">
+    <input type="text" placeholder="Search">
+  </div>
+  <div class="profile-avatar">O</div>
+</div>
+
+  <div class="list-item"><img src="../../assets/icons/chat-icon-7589595766.svg" alt="" width="24" height="24"> Cellore</div>
+  <div class="list-item" id="libraryBtn"><img src="../../assets/icons/chat-icon-9a60503afa.svg" alt="" width="24" height="24"> Library</div>
+  <div class="list-item" id="designerBtn"><img src="../../assets/icons/chat-icon-d4d973115a.svg" alt="" width="24" height="24"> Designer</div>
+  <div class="section-gap"></div>
+  <div class="list-item" id="newPartBtn"><img src="../../assets/icons/chat-icon-7825ca5695.svg" alt="" width="24" height="24"> New Part</div>
+  <div class="list-item"><img src="../../assets/icons/chat-icon-1faf16f34a.svg" alt="" width="24" height="24"> New Chat</div>
+  <div class="list-item" id="newDesignBtn"><img src="../../assets/icons/chat-icon-89da790688.svg" alt="" width="24" height="24"> New Design</div>
+  <div class="section-gap"></div>
+  <div class="list-item"><div class="part-square">A</div> Addiction recovery methods</div>
+  <div class="list-item"><div class="part-square">P</div> Push-pull </div>
+  <div class="list-item"><div class="part-square">T</div> Thread Lifts Explained</div>
+  <div class="section-gap"></div>
+  <div class="list-item">Hair Removal Methods Explained</div>
+  <div class="list-item"><div class="img-square">C</div> Crush to Relationship</div>
+  <div class="list-item">Emotional Durability Analysis</div>
+  <div class="list-item"><div class="img-square">W</div> Webtoon 2 Logic</div>
+</div>
+
+<div class="bottom-sheet" id="librarySheet">
+  <div class="sheet-header">
+
+    <div class="sheet-search-container">
+  <img src="../../assets/icons/chat-icon-bb81da9f8e.svg" alt="" width="22" height="22">
+  <input type="text" placeholder="Search Images">
+</div>
+
+        <div class="sheet-controls-left">
+            <div class="upload-btn">
+        <img src="../../assets/icons/chat-icon-4ca75ec411.svg" alt="" width="24" height="24">
+      </div>
+      <div class="sheet-close" id="closeSheet">
+        <img src="../../assets/icons/chat-icon-639e006a0f.svg" alt="" width="24" height="24">
+      </div>
+    </div>
+  </div>
+
+  <div class="image-grid">
+    <div class="grid-item aspect-16-9"></div>
+    <div class="grid-item aspect-1-1"></div>
+  </div>
+  
+</div>
+
+<div class="bottom-sheet" id="designerSheet">
+  <div class="sheet-header">
+    <div class="sheet-search-container">
+      <img src="../../assets/icons/chat-icon-71d5542a9a.svg" alt="" width="24" height="24">
+      <input type="text" placeholder="Search Designs">
+    </div>
+    <div class="sheet-controls-left">
+      <div class="upload-btn">
+        <img src="../../assets/icons/chat-icon-0afe1a4762.svg" alt="" width="24" height="24">
+      </div>
+      <div class="sheet-close" id="closeDesignerSheet">
+        <img src="../../assets/icons/chat-icon-639e006a0f.svg" alt="" width="24" height="24">
+      </div>
+    </div>
+  </div>
+<div class="designerContainer">
+
+
+    <section class="recents">
+        <div class="section-title">
+            <h1>All Designs</h1>
+            <div class="filter-trigger" onclick="toggleFilters()">
+                <img src="../../assets/icons/chat-icon-0202e2f4fc.svg" alt="" width="24" height="24">
+            </div>
+        </div>
+
+        <div class="filter-drawer" id="filterDrawer">
+            <div class="filter-content">
+                <div class="project-scroll">
+                    <div class="scroll-item">
+                        <div class="circle-icon" style="background: palevioletred;">H</div>
+                        <span>Hall Of F...</span>
+                    </div>
+                    <div class="scroll-item">
+                        <div class="circle-icon" style="background: cadetblue;">D</div>
+                        <span>Dark Tim...</span>
+                    </div>
+                    <div class="scroll-item">
+                        <div class="circle-icon" style="background: deeppink;">F</div>
+                        <span>Fraction</span>
+                    </div>
+                    <div class="scroll-item">
+                        <div class="circle-icon" style="background: gold;">B</div>
+                        <span>Breach O...</span>
+                    </div>
+                    <div class="scroll-item">
+                        <div class="circle-icon" style="background: cyan;">P</div>
+                        <span>Poetry</span>
+                    </div>
+                    <div class="scroll-item">
+                        <div class="circle-icon" style="background: peru;">SF</div>
+                        <span>Sick f...</span>
+                    </div>
+                    <div class="scroll-item">
+                        <div class="circle-icon" style="background: mediumpurple;">H</div>
+                        <span>History</span>
+                    </div>
+                    <div class="scroll-item">
+                        <div class="circle-icon" style="background: darkseagreen;">M</div>
+                        <span>Manga</span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+
+        <div class="project-list">
+            <div class="project-item">
+                <div class="project-thumb thumb-pattern"></div>
+                <div class="project-info">
+                    <h3>Untitled design</h3>
+                    <div class="meta-row">
+                        <span>1024 x 1024</span>
+                    </div>
+                </div>
+                <div class="more-options"><img src="../../assets/icons/chat-icon-c45020b28d.svg" alt="" width="24" height="24"></div>
+            </div>
+            <div class="project-item">
+                <div class="project-thumb thumb-pattern"></div>
+                <div class="project-info">
+                    <h3>Untitled design</h3>
+                    <div class="meta-row">
+                        <span>1024 x 1024</span>
+                    </div>
+                </div>
+                <div class="more-options"><img src="../../assets/icons/chat-icon-c45020b28d.svg" alt="" width="24" height="24"></div>
+            </div>
+            <div class="project-item">
+                <div class="project-thumb thumb-pattern"></div>
+                <div class="project-info">
+                    <h3>Untitled design</h3>
+                    <div class="meta-row">
+                        <span>1024 x 1024</span>
+                    </div>
+                </div>
+                <div class="more-options"><img src="../../assets/icons/chat-icon-c45020b28d.svg" alt="" width="24" height="24"></div>
+            </div>
+            <div class="project-item">
+                <div class="project-thumb thumb-pattern"></div>
+                <div class="project-info">
+                    <h3>Untitled design</h3>
+                    <div class="meta-row">
+                        <span>1024 x 1024</span>
+                    </div>
+                </div>
+                <div class="more-options"><img src="../../assets/icons/chat-icon-c45020b28d.svg" alt="" width="24" height="24"></div>
+            </div>
+            <div class="project-item">
+                <div class="project-thumb thumb-pattern"></div>
+                <div class="project-info">
+                    <h3>Untitled design</h3>
+                    <div class="meta-row">
+                        <span>1024 x 1024</span>
+                    </div>
+                </div>
+                <div class="more-options"><img src="../../assets/icons/chat-icon-c45020b28d.svg" alt="" width="24" height="24"></div>
+            </div>
+            <div class="project-item">
+                <div class="project-thumb thumb-pattern"></div>
+                <div class="project-info">
+                    <h3>Untitled design</h3>
+                    <div class="meta-row">
+                        <span>1024 x 1024</span>
+                    </div>
+                </div>
+                <div class="more-options"><img src="../../assets/icons/chat-icon-c45020b28d.svg" alt="" width="24" height="24"></div>
+            </div>
+            <div class="project-item">
+                <div class="project-thumb thumb-pattern"></div>
+                <div class="project-info">
+                    <h3>Untitled design</h3>
+                    <div class="meta-row">
+                        <span>1024 x 1024</span>
+                    </div>
+                </div>
+                <div class="more-options"><img src="../../assets/icons/chat-icon-c45020b28d.svg" alt="" width="24" height="24"></div>
+            </div>
+            <div class="project-item">
+                <div class="project-thumb thumb-pattern"></div>
+                <div class="project-info">
+                    <h3>Untitled design</h3>
+                    <div class="meta-row">
+                        <span>1024 x 1024</span>
+                    </div>
+                </div>
+                <div class="more-options"><img src="../../assets/icons/chat-icon-c45020b28d.svg" alt="" width="24" height="24"></div>
+            </div>
+            <div class="project-item">
+                <div class="project-thumb thumb-pattern"></div>
+                <div class="project-info">
+                    <h3>Untitled design</h3>
+                    <div class="meta-row">
+                        <span>1024 x 1024</span>
+                    </div>
+                </div>
+                <div class="more-options"><img src="../../assets/icons/chat-icon-c45020b28d.svg" alt="" width="24" height="24"></div>
+            </div>
+            <div class="project-item">
+                <div class="project-thumb thumb-pattern"></div>
+                <div class="project-info">
+                    <h3>Untitled design</h3>
+                    <div class="meta-row">
+                        <span>1024 x 1024</span>
+                    </div>
+                </div>
+                <div class="more-options"><img src="../../assets/icons/chat-icon-c45020b28d.svg" alt="" width="24" height="24"></div>
+            </div>
+            <div class="project-item">
+                <div class="project-thumb thumb-pattern"></div>
+                <div class="project-info">
+                    <h3>Untitled design</h3>
+                    <div class="meta-row">
+                        <span>1024 x 1024</span>
+                    </div>
+                </div>
+                <div class="more-options"><img src="../../assets/icons/chat-icon-c45020b28d.svg" alt="" width="24" height="24"></div>
+            </div>
+            <div class="project-item">
+                <div class="project-thumb thumb-pattern"></div>
+                <div class="project-info">
+                    <h3>Untitled design</h3>
+                    <div class="meta-row">
+                        <span>1024 x 1024</span>
+                    </div>
+                </div>
+                <div class="more-options"><img src="../../assets/icons/chat-icon-c45020b28d.svg" alt="" width="24" height="24"></div>
+            </div>
+            <div class="project-item">
+                <div class="project-thumb thumb-pattern"></div>
+                <div class="project-info">
+                    <h3>Untitled design</h3>
+                    <div class="meta-row">
+                        <span>1024 x 1024</span>
+                    </div>
+                </div>
+                <div class="more-options"><img src="../../assets/icons/chat-icon-c45020b28d.svg" alt="" width="24" height="24"></div>
+            </div>
+        </div>
+    </section>
+</div>
+</div>
+
+<div class="bottom-sheet" id="newProjectsSheet">
+
+  </div>
+
+      
+    
+    
+<div class="bottom-sheet" id="newDesignSheet">
+
+
+</div>
+
+
+<script src="script.js"></script>
+
+
+</body>
+</html>
