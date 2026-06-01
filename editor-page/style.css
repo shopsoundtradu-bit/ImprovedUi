@@ -7,10 +7,49 @@
     -webkit-tap-highlight-color: transparent;
   }
 
-  :root {
-  --bar-height: 100px;
-  --top-height: 70px;
-}
+  /* Editor is intentionally locked to a light appearance regardless of the
+     app-wide theme switcher. Force the light-theme tokens locally so the
+     canvas always stays white/comfortable for editing. */
+  :root,
+  :root[data-theme],
+  :root[data-theme="light"],
+  :root[data-theme="dark"] {
+    --bar-height: 100px;
+    --top-height: 70px;
+    --bg: #FFFFFF;
+    --surface: #F2F2F7;
+    --surface-soft: rgba(0, 0, 0, 0.04);
+    --surface-light: rgba(0, 0, 0, 0.06);
+    --surface-strong: #E5E5EA;
+    --border: rgba(0, 0, 0, 0.1);
+    --text-primary: #000000;
+    --text-secondary: rgba(0, 0, 0, 0.6);
+    --text-muted: rgba(0, 0, 0, 0.4);
+    --text-disabled: rgba(0, 0, 0, 0.3);
+    --msg-user-bg: #E5E5EA;
+    --accent-white: #6B6C71;
+    --primary: #000000;
+    --secondary-text: rgba(0, 0, 0, 0.6);
+    --invert-fg: #FFFFFF;
+    --row-active: rgba(0, 0, 0, 0.08);
+  }
+
+  /* Status bar / overscroll background: paint the area above the top bar
+     (the iOS notch / safe-area-inset-top region and any rubber-band scroll)
+     with the same blue as the gradient's start so the status bar reads as
+     part of the header instead of jarring white. */
+  html {
+    background: #0082FF;
+  }
+
+  /* Neutralise the global icon-inversion rules from theme.css for this page
+     — the editor must look identical no matter what theme the rest of the
+     app is in. */
+  :root[data-theme="light"] img,
+  :root[data-theme="dark"] img,
+  :root img {
+    filter: none !important;
+  }
   
   body {
     font-family: 'DM Sans', sans-serif;
