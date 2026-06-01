@@ -53,7 +53,7 @@
   
   body {
     font-family: 'DM Sans', sans-serif;
-    background: var(--bg);
+    background: #FFFFFF;
     /* Back to your clean, light gray background */
     height: 100dvh;
     display: flex;
@@ -69,8 +69,16 @@
 .top-bar {
   position: relative;
   
-  /* Gradient */
-  background: linear-gradient(90deg, #0082FF 0%, #00FFFD 100%);
+  /* High-end mesh-style gradient using only the two original colours.
+     Stacked radial gradients of #0082FF and #00FFFD blend organically so
+     the transition feels rich and dimensional instead of a flat
+     left-to-right ramp. The bottom edge stays a single crisp line. */
+  background-color: #0082FF;
+  background-image:
+    radial-gradient(120% 180% at 100% 50%, #00FFFD 0%, rgba(0, 255, 253, 0) 60%),
+    radial-gradient(120% 180% at 0% 50%, #0082FF 0%, rgba(0, 130, 255, 0) 65%),
+    linear-gradient(90deg, #0082FF 0%, #00FFFD 100%);
+  background-blend-mode: screen, normal, normal;
   
   /* Safe area support */
   padding-top: env(safe-area-inset-top);
@@ -121,7 +129,7 @@
   .canvas-area {
     flex: 1;
     position: relative;
-    background: var(--bg);
+    background: #EEF1F5;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -132,9 +140,9 @@
   .canvas-card {
     width: min(85vw, 360px);
     aspect-ratio: 1/1;
-    background: var(--text-primary);
+    background: #FFFFFF;
     border-radius: 0px; 
-    box-shadow: 0 10px 40px var(--surface-soft); 
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.04);
     z-index: 1;
     transform-origin: center center;
     will-change: transform;
@@ -146,7 +154,7 @@
     bottom: 12px;
     left: 24px;
     background: #4F5055;
-    color: var(--text-primary);
+    color: #FFFFFF;
     padding: 6px 14px;
     border-radius: 32px;
     font-size: 12px;
@@ -164,7 +172,7 @@
   /* ── BOTTOM BAR ── */
   .bottom-bar {
     height: var(--bar-height);
-    background: var(--bg);
+    background: #EEF1F5;
     display: flex;
     align-items: center;
     z-index: 20;
@@ -206,7 +214,7 @@
   /* ── SEND BUTTON STATES ── */
   .send-circle { 
     width: 34px; height: 34px; 
-    background: var(--text-primary); 
+    background: #000000;
     border-radius: 50%; 
     display: flex; 
     align-items: center; 
