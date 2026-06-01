@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1060 1060" width="24" height="24">
+
+  <!-- TOP-LEFT: Square -->
+  <rect x="55" y="55" width="420" height="420" fill="white"/>
+
+  <!-- TOP-RIGHT: Circle -->
+  <circle cx="790" cy="265" r="210" fill="white"/>
+
+  <!-- BOTTOM-LEFT: Heart -->
+  <path d="
+  M 265,1005
+  C 160,925 55,845 55,725
+  C 55,635 115,585 175,585
+  C 215,585 250,610 265,635
+  C 280,610 315,585 355,585
+  C 415,585 475,635 475,725
+  C 475,845 370,925 265,1005
+  Z"
+  fill="white"/>
+
+  <!-- BOTTOM-RIGHT: Plus (balanced thickness) -->
+
+  <!-- Horizontal -->
+  <rect x="600" y="790" width="380" height="90" rx="45" fill="white"/>
+
+  <!-- Vertical -->
+  <rect x="745" y="645" width="90" height="380" rx="45" fill="white"/>
+
+</svg>

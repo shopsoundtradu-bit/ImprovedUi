@@ -1,0 +1,142 @@
+/* Unified theme tokens for all preview pages.
+   Default = follow system preference. Override with <html data-theme="light|dark">. */
+
+:root {
+  --side-padding: 20px;
+  --input-height: 45px;
+  --bar-height: 100px;
+  --top-height: 70px;
+  --radius: 14px;
+  --bezier: cubic-bezier(0.16, 1, 0.3, 1);
+  --accent-blue: #4A90E2;
+  --accent-purple: #8B5CF6;
+}
+
+/* ---------- DARK (default for system + explicit) ---------- */
+:root,
+:root[data-theme="dark"] {
+  --bg: #000000;
+  --surface: #111111;
+  --surface-soft: rgba(255, 255, 255, 0.05);
+  --surface-light: rgba(255, 255, 255, 0.12);
+  --surface-strong: #111111;
+  --border: rgba(255, 255, 255, 0.1);
+  --text-primary: #FFFFFF;
+  --text-secondary: rgba(255, 255, 255, 0.6);
+  --text-muted: rgba(255, 255, 255, 0.4);
+  --text-disabled: rgba(255, 255, 255, 0.3);
+  --msg-user-bg: #222222;
+  --accent-white: #4F5055;
+  --primary: #FFFFFF;
+  --secondary-text: rgba(255, 255, 255, 0.6);
+  --invert-fg: #000000;
+  --row-active: rgba(255, 255, 255, 0.1);
+}
+
+/* ---------- LIGHT ---------- */
+:root[data-theme="light"] {
+  --bg: #FFFFFF;
+  --surface: #F2F2F7;
+  --surface-soft: rgba(0, 0, 0, 0.04);
+  --surface-light: rgba(0, 0, 0, 0.06);
+  --surface-strong: #E5E5EA;
+  --border: rgba(0, 0, 0, 0.1);
+  --text-primary: #000000;
+  --text-secondary: rgba(0, 0, 0, 0.6);
+  --text-muted: rgba(0, 0, 0, 0.4);
+  --text-disabled: rgba(0, 0, 0, 0.3);
+  --msg-user-bg: #E5E5EA;
+  --accent-white: #6B6C71;
+  --primary: #000000;
+  --secondary-text: rgba(0, 0, 0, 0.6);
+  --invert-fg: #FFFFFF;
+  --row-active: rgba(0, 0, 0, 0.08);
+}
+
+/* ---------- SYSTEM preference (only when not explicitly overridden) ---------- */
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme]) {
+    --bg: #FFFFFF;
+    --surface: #F2F2F7;
+    --surface-soft: rgba(0, 0, 0, 0.04);
+    --surface-light: rgba(0, 0, 0, 0.06);
+    --surface-strong: #E5E5EA;
+    --border: rgba(0, 0, 0, 0.1);
+    --text-primary: #000000;
+    --text-secondary: rgba(0, 0, 0, 0.6);
+    --text-muted: rgba(0, 0, 0, 0.4);
+    --text-disabled: rgba(0, 0, 0, 0.3);
+    --msg-user-bg: #E5E5EA;
+    --accent-white: #6B6C71;
+    --primary: #000000;
+    --secondary-text: rgba(0, 0, 0, 0.6);
+    --invert-fg: #FFFFFF;
+    --row-active: rgba(0, 0, 0, 0.08);
+  }
+}
+
+/* ---------- Icon color adaptation ----------
+   SVG icons are loaded as <img>, so they cannot inherit currentColor.
+   - Most icons + brand-logo are authored white (for dark bg) → invert in light mode.
+   - google-icon and apple-icon are authored black → invert in light mode for dark social buttons. */
+
+/* Light mode: invert white-on-dark icons (incl. brand logo). Exclude google/apple. */
+:root[data-theme="light"] img[src*="assets/icons/"]:not([src*="google-icon"]):not([src*="apple-icon"]) {
+  filter: invert(1);
+}
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme]) img[src*="assets/icons/"]:not([src*="google-icon"]):not([src*="apple-icon"]) {
+    filter: invert(1);
+  }
+}
+
+/* Light mode: invert google/apple so they show on dark social buttons. */
+:root[data-theme="light"] img[src*="google-icon"],
+:root[data-theme="light"] img[src*="apple-icon"] {
+  filter: invert(1);
+}
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme]) img[src*="google-icon"],
+  :root:not([data-theme]) img[src*="apple-icon"] {
+    filter: invert(1);
+  }
+}
+
+/* ---------- Unified back button ----------
+   Same look, size, alignment, and behaviour across every page that has a
+   "Back" control. Specificity (a.back-btn / button.back-btn) is bumped so
+   these rules win over per-page stylesheets loaded after theme.css. */
+a.back-btn,
+button.back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 32px 0;
+  padding: 8px 0;
+  background: transparent;
+  border: none;
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.2px;
+  color: var(--text-secondary);
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+a.back-btn:hover,
+button.back-btn:hover {
+  color: var(--text-primary);
+}
+a.back-btn:active,
+button.back-btn:active {
+  transform: translateX(-2px);
+}
+a.back-btn img,
+button.back-btn img {
+  width: 18px;
+  height: 18px;
+  display: block;
+  flex-shrink: 0;
+}
