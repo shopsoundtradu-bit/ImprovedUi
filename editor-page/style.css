@@ -58,19 +58,22 @@
     filter: none !important;
   }
   
-  body {
-    font-family: 'DM Sans', sans-serif;
-    background: #FFFFFF;
-    /* Back to your clean, light gray background */
-    height: 100dvh;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-    position: fixed;
-    width: 100%;
-    margin: 0;
-    padding: 0;
-  }
+/* ── UPDATED BODY RULE ── */
+body {
+  font-family: 'DM Sans', sans-serif;
+  /* Changed from #FFFFFF to match your canvas area/bottom bar color */
+  background: #EEF1F5; 
+  height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: fixed;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+
   
 /* ── TOP BAR ── */
 .top-bar {
@@ -176,17 +179,21 @@
     opacity: 1;
   }
 
-  /* ── BOTTOM BAR ── */
-  .bottom-bar {
-    height: var(--bar-height);
-    padding-bottom: env(safe-area-inset-bottom);
-    box-sizing: content-box;
-    background: #EEF1F5;
-    display: flex;
-    align-items: center;
-    z-index: 20;
-    position: relative;
-  }
+/* ── UPDATED BOTTOM BAR ── */
+.bottom-bar {
+  /* Use border-box to ensure safe-area padding fits inside the layout safely */
+  box-sizing: border-box;
+  
+  /* Combine your base bar height with the iOS bottom safe area padding */
+  height: calc(var(--bar-height) + env(safe-area-inset-bottom));
+  padding-bottom: env(safe-area-inset-bottom);
+  
+  background: #EEF1F5;
+  display: flex;
+  align-items: center;
+  z-index: 20;
+  position: relative;
+}
 
   .bottom-scroll {
     display: flex;
