@@ -39,7 +39,7 @@
      with the same blue as the gradient's start so the status bar reads as
      part of the header instead of jarring white. */
   html {
-    background: #0004FF;
+    background: #0083FF;
   }
 
   /* Paint the bottom safe-area (iOS home-indicator region) the same colour
@@ -85,11 +85,11 @@ body {
      Stacked radial gradients of #0082FF and #00FFFD blend organically so
      the transition feels rich and dimensional instead of a flat
      left-to-right ramp. The bottom edge stays a single crisp line. */
-  background-color: #0004FF;
+  background-color: #0083FF;
   background-image:
     radial-gradient(120% 180% at 100% 50%, #0083FF 0%, rgba(0, 255, 253, 0) 60%),
-    radial-gradient(120% 180% at 0% 50%, #0004FF 0%, rgba(0, 130, 255, 0) 65%),
-    linear-gradient(90deg, #0004FF 0%, #0083FF 100%);
+    radial-gradient(120% 180% at 0% 50%, #0083FF 0%, rgba(0, 130, 255, 0) 65%),
+    linear-gradient(90deg, #0083FF 0%, #0083FF 100%);
   background-blend-mode: screen, normal, normal;
   
   /* Safe area support */
