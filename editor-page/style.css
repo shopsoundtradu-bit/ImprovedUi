@@ -15,7 +15,7 @@
   :root[data-theme="light"],
   :root[data-theme="dark"] {
     --bar-height: 100px;
-    --top-height: 70px;
+    --top-height: 52px;
     --bg: #FFFFFF;
     --surface: #F2F2F7;
     --surface-soft: rgba(0, 0, 0, 0.04);
@@ -40,6 +40,13 @@
      part of the header instead of jarring white. */
   html {
     background: #0082FF;
+  }
+
+  /* Paint the bottom safe-area (iOS home-indicator region) the same colour
+     as the bottom bar / canvas area so standalone PWA mode doesn't show a
+     white strip under the toolbar. */
+  body {
+    background: #EEF1F5;
   }
 
   /* Neutralise the global icon-inversion rules from theme.css for this page
@@ -89,7 +96,7 @@
   padding-bottom: 0;
   
   /* Total height INCLUDING notch/status bar */
-  height: calc(var(--top-height) + env(safe-area-inset-top));
+    height: calc(var(--top-height) + env(safe-area-inset-top));
   
   /* Layout */
   display: flex;
@@ -171,7 +178,8 @@
 
   /* ── BOTTOM BAR ── */
   .bottom-bar {
-    height: var(--bar-height);
+    height: calc(var(--bar-height) + env(safe-area-inset-bottom));
+    padding-bottom: env(safe-area-inset-bottom);
     background: #EEF1F5;
     display: flex;
     align-items: center;
