@@ -178,8 +178,9 @@
 
   /* ── BOTTOM BAR ── */
   .bottom-bar {
-    height: calc(var(--bar-height) + env(safe-area-inset-bottom));
+    height: var(--bar-height);
     padding-bottom: env(safe-area-inset-bottom);
+    box-sizing: content-box;
     background: #EEF1F5;
     display: flex;
     align-items: center;
