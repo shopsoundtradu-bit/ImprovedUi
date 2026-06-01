@@ -85,10 +85,10 @@ body {
      Stacked radial gradients of #0082FF and #00FFFD blend organically so
      the transition feels rich and dimensional instead of a flat
      left-to-right ramp. The bottom edge stays a single crisp line. */
-  background-color: #0082FF;
+  background-color: #14FF00;
   background-image:
     radial-gradient(120% 180% at 100% 50%, #00FFFD 0%, rgba(0, 255, 253, 0) 60%),
-    radial-gradient(120% 180% at 0% 50%, #0082FF 0%, rgba(0, 130, 255, 0) 65%),
+    radial-gradient(120% 180% at 0% 50%, #FF0000 0%, rgba(0, 130, 255, 0) 65%),
     linear-gradient(90deg, #0082FF 0%, #00FFFD 100%);
   background-blend-mode: screen, normal, normal;
   
